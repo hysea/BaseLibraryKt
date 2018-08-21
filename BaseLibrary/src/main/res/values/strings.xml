@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Library</string>
+
+    <string name="not_network">当前网络不可用，请检查网络情况</string>
+    <string name="http_error">网络请求失败，请稍后重试…</string>
+    <string name="parse_error">解析数据失败，请稍后再试…</string>
+    <string name="connect_error">网络连接失败，请稍后再试…</string>
+    <string name="connect_timeout">网络连接超时，请稍后再试…</string>
+    <string name="server_error">服务器异常，请稍后重试…</string>
+
+    <string name="double_click_exit">再按一次退出程序</string>
+</resources>
