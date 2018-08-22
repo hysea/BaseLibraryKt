@@ -17,7 +17,6 @@ import com.hysea.library.manager.AppManager
 abstract class BaseActivity : AppCompatActivity(), ICommon {
     protected lateinit var mContext: Context
     protected var immersionBar: ImmersionBar? = null
-//    private var mLoadingView: LoadingView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

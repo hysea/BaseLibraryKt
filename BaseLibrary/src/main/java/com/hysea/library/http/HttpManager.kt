@@ -41,7 +41,7 @@ object HttpManager {
 
     private val mRetrofit: Retrofit by lazy {
         Retrofit.Builder()
-                .baseUrl(BuildConfig.API_SERVER_URL)
+//                .baseUrl(BuildConfig.API_SERVER_URL)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

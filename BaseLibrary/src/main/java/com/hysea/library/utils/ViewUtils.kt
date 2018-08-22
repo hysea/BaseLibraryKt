@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.TextView
 
 /**
  * View相关工具类
@@ -47,5 +48,12 @@ fun EditText.showInputMethod() {
  */
 fun EditText.hideInputMethod() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-    imm?.hideSoftInputFromWindow(this.windowToken,0)
+    imm?.hideSoftInputFromWindow(this.windowToken, 0)
+}
+
+/**
+ * 获取文本控件内容
+ */
+fun TextView.getContent(): String {
+    return this.text.toString()
 }

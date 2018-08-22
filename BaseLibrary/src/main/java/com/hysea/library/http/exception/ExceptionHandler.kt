@@ -3,6 +3,7 @@ import android.util.MalformedJsonException
 import com.google.gson.JsonParseException
 import com.hysea.library.R
 import com.hysea.library.http.exception.ApiException
+import com.hysea.library.http.exception.ServerException
 import com.hysea.library.utils.LogUtils
 import com.hysea.library.utils.TAG
 import com.hysea.library.utils.getString

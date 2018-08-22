@@ -1,7 +1,6 @@
 package com.hysea.library.base
 
 import android.os.Bundle
-import com.foundao.likevideo.base.BaseActivity
 
 /**
  * 带Title的基础Activity
