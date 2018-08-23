@@ -1,4 +1,4 @@
-package com.foundao.likevideo.base
+package com.hysea.library.base
 
 import android.os.Bundle
 import android.view.View
