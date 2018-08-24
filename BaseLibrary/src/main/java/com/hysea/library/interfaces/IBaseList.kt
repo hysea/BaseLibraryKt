@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
  * 列表接口
  * Created by hysea on 2018/8/21.
  */
-interface IList {
+interface IBaseList {
     /**
      * 设置LayoutManager
      */

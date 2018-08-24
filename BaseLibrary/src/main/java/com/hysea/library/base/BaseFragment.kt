@@ -8,13 +8,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hysea.library.interfaces.ICommon
+import com.hysea.library.interfaces.IBaseView
 
 /**
  * Fragment的基类
  * Created by hysea on 2018/6/27.
  */
-abstract class BaseFragment : Fragment(), ICommon {
+abstract class BaseFragment : Fragment(), IBaseView {
     lateinit var mContext: Context
     lateinit var mActivity: Activity
 

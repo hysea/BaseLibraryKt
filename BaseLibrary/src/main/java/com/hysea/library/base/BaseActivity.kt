@@ -7,14 +7,14 @@ import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import com.gyf.barlibrary.ImmersionBar
 import com.hysea.library.R
-import com.hysea.library.interfaces.ICommon
+import com.hysea.library.interfaces.IBaseView
 import com.hysea.library.manager.AppManager
 
 /**
  * Activity基类
  * Created by hysea on 2018/6/27.
  */
-abstract class BaseActivity : AppCompatActivity(), ICommon {
+abstract class BaseActivity : AppCompatActivity(), IBaseView {
     protected lateinit var mContext: Context
     protected var immersionBar: ImmersionBar? = null
 

@@ -17,3 +17,12 @@ fun Closeable?.closeQuietly() {
         ex.printStackTrace()
     }
 }
+
+/**
+ * 关闭多个IO流
+ */
+fun closeIO(vararg closeables: Closeable) {
+    closeables.forEach {
+        it.closeQuietly()
+    }
+}

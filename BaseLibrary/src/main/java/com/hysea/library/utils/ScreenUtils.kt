@@ -1,8 +1,12 @@
 package com.hysea.library.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.util.DisplayMetrics
 import android.view.WindowManager
+import com.hysea.library.base.BaseApp
+
 
 /**
  * 屏幕相关工具类
@@ -30,34 +34,65 @@ fun getScreenHeight(context: Context): Int {
 }
 
 /**
- * 将px转换成dp
+ * set fullScreen
  */
-fun px2dp(context: Context, pxValue: Float): Int {
-    val scale = context.resources.displayMetrics.density
-    return (pxValue / scale + 0.5f).toInt()
+fun setFullScreen(activity: Activity?) {
+    activity?.window?.addFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 }
 
 /**
- * 将dp转换成px
+ * set nonFullScreen
  */
-fun dp2px(context: Context, dpValue: Float): Int {
-    val scale = context.resources.displayMetrics.density
-    return (dpValue * scale + 0.5f).toInt()
+fun setNonFullScreen(activity: Activity?) {
+    activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
+            or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+}
+
+
+/**
+ * Toggle full screen.
+ */
+fun toggleFullScreen(activity: Activity?) {
+    val fullScreenFlag = WindowManager.LayoutParams.FLAG_FULLSCREEN
+    activity?.window?.let {
+        if ((it.attributes.flags and fullScreenFlag) == fullScreenFlag) {
+            it.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        } else {
+            it.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }
+    }
 }
 
 /**
- * 将px转换成sp
+ * 是否全屏
  */
-fun px2sp(context: Context, pxValue: Float): Int {
-    val fontScale = context.resources.displayMetrics.scaledDensity
-    return (pxValue / fontScale + 0.5f).toInt()
+fun isFullScreen(activity: Activity?): Boolean {
+    val fullScreenFlag = WindowManager.LayoutParams.FLAG_FULLSCREEN
+    return if (activity == null) {
+        false
+    } else {
+        activity.window.attributes.flags and fullScreenFlag == fullScreenFlag
+    }
 }
 
 /**
- * 将sp转换成px
+ * Return whether screen is landscape.
  */
-fun sp2px(context: Context, spValue: Float): Int {
-    val fontScale = context.resources.displayMetrics.scaledDensity
-    return (spValue * fontScale + 0.5f).toInt()
+fun isLandscape(): Boolean {
+    return BaseApp.instance.resources.configuration.orientation ==
+            Configuration.ORIENTATION_LANDSCAPE
 }
+
+/**
+ * Return whether screen is portrait.
+ */
+fun isPortrait(): Boolean {
+    return BaseApp.instance.resources.configuration.orientation ==
+            Configuration.ORIENTATION_PORTRAIT
+}
+
 

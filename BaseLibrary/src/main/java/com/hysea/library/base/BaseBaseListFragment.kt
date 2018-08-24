@@ -2,13 +2,13 @@ package com.hysea.library.base
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.hysea.library.interfaces.IList
+import com.hysea.library.interfaces.IBaseList
 
 /**
  * 列表基础Fragment
  * Created by hysea on 2018/8/21.
  */
-class BaseListFragment : BaseTitleActivity(), IList {
+class BaseBaseListFragment : BaseTitleActivity(), IBaseList {
     override fun getLayoutId(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

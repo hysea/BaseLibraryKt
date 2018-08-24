@@ -7,7 +7,7 @@ import android.support.annotation.LayoutRes
  * Activity与Fragment的公共逻辑
  * Created by hysea on 2018/6/27.
  */
-interface ICommon {
+interface IBaseView {
     /**
      * 获取布局id
      */

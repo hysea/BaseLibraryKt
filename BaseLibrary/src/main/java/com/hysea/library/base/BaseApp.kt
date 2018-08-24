@@ -3,6 +3,7 @@ package com.hysea.library.base
 import android.app.Application
 import com.hysea.library.BuildConfig
 import com.hysea.library.utils.LogUtils
+import com.hysea.library.utils.saveFile
 import com.squareup.leakcanary.LeakCanary
 import kotlin.properties.Delegates
 
