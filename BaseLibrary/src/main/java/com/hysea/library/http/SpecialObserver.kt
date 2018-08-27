@@ -1,5 +1,6 @@
 package com.hysea.library.http
 
+import ExceptionHandler
 import com.hysea.library.R
 import com.hysea.library.base.BaseApp
 import com.hysea.library.http.exception.ApiException
@@ -21,6 +22,7 @@ abstract class SpecialObserver<T> : Observer<T>, IResponse<T> {
             onFailure(ExceptionHandler.handleException(ex))
             d.dispose()
         }
+        onStart()
     }
 
     override fun onNext(t: T) {
@@ -38,4 +40,6 @@ abstract class SpecialObserver<T> : Observer<T>, IResponse<T> {
     override fun onFailure(ex: ApiException) {
 
     }
+
+    override fun onStart() {}
 }

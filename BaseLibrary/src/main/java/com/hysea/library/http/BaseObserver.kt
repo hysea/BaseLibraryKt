@@ -29,6 +29,7 @@ abstract class BaseObserver<T>(var isToast: Boolean = true) : Observer<HttpResul
             onFailure(ex)
             d.dispose()
         }
+        onStart()
     }
 
     override fun onNext(t: HttpResult<T>) {
@@ -53,4 +54,6 @@ abstract class BaseObserver<T>(var isToast: Boolean = true) : Observer<HttpResul
             BaseApp.instance.showToast(ex.msg)
         }
     }
+
+    override fun onStart() {}
 }

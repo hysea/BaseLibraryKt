@@ -1,5 +1,6 @@
 package com.hysea.library.interfaces
 
+import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
 
 /**
@@ -15,9 +16,9 @@ interface IBaseList {
     /**
      * 设置分割线
      */
-    fun setItemDecoration()
+    fun getItemDecoration(): RecyclerView.ItemDecoration
 
-    fun setAdapter()
+    fun setAdapter(recyclerView: RecyclerView)
 
     /**
      * 加载更多
@@ -29,8 +30,27 @@ interface IBaseList {
      */
     fun onRefresh()
 
+    fun isEnableLoadMore(): Boolean
+
+    fun isAutoRefresh(): Boolean
+
+    /**
+     * 刷新结束
+     */
+    fun finishRefresh()
+
+    /**
+     * 加载结束
+     */
+    fun finishLoadmore()
+
+    /**
+     * 加载结束，没数据
+     */
+    fun finishLoadMoreWithNoMoreData()
+
     /**
      * 设置空布局
      */
-    fun setEmptyLayout()
+    fun setEmptyLayout(@LayoutRes layoutId: Int)
 }

@@ -16,13 +16,17 @@ import com.hysea.library.manager.AppManager
  */
 abstract class BaseActivity : AppCompatActivity(), IBaseView {
     protected lateinit var mContext: Context
-    protected var immersionBar: ImmersionBar? = null
+    private var immersionBar: ImmersionBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
-        AppManager.addActivity(this)
         mContext = this
+        initSetup(savedInstanceState)
+    }
+
+    open fun initSetup(savedInstanceState: Bundle?) {
+        AppManager.addActivity(this)
         immersionBar = initImmersionBar()
         immersionBar?.init()
         init(savedInstanceState)

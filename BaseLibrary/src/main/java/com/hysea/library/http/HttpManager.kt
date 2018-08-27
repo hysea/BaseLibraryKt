@@ -1,6 +1,7 @@
 package com.hysea.library.http
 
 import com.hysea.library.BuildConfig
+import com.hysea.library.base.BaseApp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,8 +26,8 @@ object HttpManager {
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
-        // 处理参数
-//                .addInterceptor(RequestInterceptor())
+                // 处理参数
+                .addInterceptor(RequestInterceptor())
 
         if (BuildConfig.DEBUG) {
             // 打印日志
@@ -41,7 +42,7 @@ object HttpManager {
 
     private val mRetrofit: Retrofit by lazy {
         Retrofit.Builder()
-//                .baseUrl(BuildConfig.API_SERVER_URL)
+                .baseUrl(BaseApp.instance.getBaseUrl())
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

@@ -4,14 +4,15 @@ import android.os.Bundle
 import com.hysea.library.R
 import com.hysea.library.interfaces.IBaseList
 import com.hysea.library.utils.inflateLayout
-import kotlinx.android.synthetic.main.activity_base_list.*
+import kotlinx.android.synthetic.main.fragment_base_list.*
 
 /**
- * 列表基础Activity
+ * 列表基础Fragment
  * Created by hysea on 2018/8/21.
  */
-abstract class BaseListActivity : BaseTitleActivity(), IBaseList {
-    override fun getContentView(): Int = R.layout.activity_base_list
+abstract class BaseListFragment : BaseFragment(), IBaseList {
+
+    override fun getLayoutId(): Int = R.layout.fragment_base_list
 
     override fun init(savedInstanceState: Bundle?) {
         mRvList.layoutManager = getLayoutManager()
@@ -48,6 +49,6 @@ abstract class BaseListActivity : BaseTitleActivity(), IBaseList {
     }
 
     override fun setEmptyLayout(layoutId: Int) {
-        inflateLayout(layoutId, mEmptyLayout,true)
+        mContext.inflateLayout(layoutId, mEmptyLayout,true)
     }
 }

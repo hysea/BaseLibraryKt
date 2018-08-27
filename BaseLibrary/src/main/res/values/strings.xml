@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Library</string>
+    <string name="app_name">BaseLibrary</string>
 
     <string name="not_network">当前网络不可用，请检查网络情况</string>
     <string name="http_error">网络请求失败，请稍后重试…</string>
@@ -9,4 +9,6 @@
     <string name="server_error">服务器异常，请稍后重试…</string>
 
     <string name="double_click_exit">再按一次退出程序</string>
+
+    <string name="web_url_empty">url地址不能为空哦~</string>
 </resources>
