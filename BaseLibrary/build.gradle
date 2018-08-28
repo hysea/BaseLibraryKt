@@ -57,7 +57,7 @@ publish {
     userOrg = 'hysealive'
     groupId = 'com.hysea.library'
     artifactId = 'BaseLibrary'//项目名称
-    publishVersion = '1.0.0'//版本号
+    publishVersion = '1.0.1'//版本号
     desc = 'BaseLibrary'//描述
     website = 'https://github.com/hysea/BaseLibrary'
 }

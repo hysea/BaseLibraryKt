@@ -1,6 +1,7 @@
 package com.hysea.library.base
 
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import com.hysea.library.R
 import com.hysea.library.interfaces.IBaseList
 import com.hysea.library.utils.inflateLayout
@@ -35,6 +36,8 @@ abstract class BaseListActivity : BaseTitleActivity(), IBaseList {
         }
     }
 
+    fun getRecyclerView(): RecyclerView = mRvList
+
     override fun finishRefresh() {
         mSrlRefresh?.finishRefresh()
     }
@@ -48,6 +51,6 @@ abstract class BaseListActivity : BaseTitleActivity(), IBaseList {
     }
 
     override fun setEmptyLayout(layoutId: Int) {
-        inflateLayout(layoutId, mEmptyLayout,true)
+        inflateLayout(layoutId, mEmptyLayout, true)
     }
 }
