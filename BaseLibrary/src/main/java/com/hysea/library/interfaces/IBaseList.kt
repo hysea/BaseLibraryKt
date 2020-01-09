@@ -1,7 +1,7 @@
 package com.hysea.library.interfaces
 
-import android.support.annotation.LayoutRes
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * 列表接口
@@ -11,14 +11,14 @@ interface IBaseList {
     /**
      * 设置LayoutManager
      */
-    fun getLayoutManager(): RecyclerView.LayoutManager
+    fun getLayoutManager(): androidx.recyclerview.widget.RecyclerView.LayoutManager
 
     /**
      * 设置分割线
      */
-    fun getItemDecoration(): RecyclerView.ItemDecoration
+    fun getItemDecoration(): androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
-    fun setAdapter(recyclerView: RecyclerView)
+    fun setAdapter(recyclerView: androidx.recyclerview.widget.RecyclerView)
 
     /**
      * 加载更多

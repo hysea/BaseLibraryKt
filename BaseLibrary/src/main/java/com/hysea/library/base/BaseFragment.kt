@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import com.hysea.library.interfaces.IBaseView
  * Fragment的基类
  * Created by hysea on 2018/6/27.
  */
-abstract class BaseFragment : Fragment(), IBaseView {
+abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
     lateinit var mContext: Context
     lateinit var mActivity: Activity
 

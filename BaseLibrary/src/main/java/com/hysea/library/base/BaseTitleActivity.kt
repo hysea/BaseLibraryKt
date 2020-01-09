@@ -1,7 +1,7 @@
 package com.hysea.library.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import com.hysea.library.R
 import com.hysea.library.utils.inflateLayout
 import com.hysea.library.view.TitleBar

@@ -1,7 +1,7 @@
 package com.hysea.library.image.transformation
 
 import android.graphics.*
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.util.Util

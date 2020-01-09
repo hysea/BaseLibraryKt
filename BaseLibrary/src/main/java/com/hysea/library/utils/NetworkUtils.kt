@@ -4,7 +4,7 @@ import android.Manifest.permission.ACCESS_NETWORK_STATE
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import android.support.annotation.RequiresPermission
+import androidx.annotation.RequiresPermission
 import android.telephony.TelephonyManager
 import com.hysea.library.base.BaseApp
 import com.hysea.library.constant.NetworkType
