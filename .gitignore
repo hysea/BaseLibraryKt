@@ -1,9 +1,11 @@
 *.iml
 .gradle
 /local.properties
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
+# 忽略.idea目录下所有文件
+/.idea/
+# /.idea/libraries
+# /.idea/modules.xml
+# /.idea/workspace.xml
 .DS_Store
 /build
 /captures
