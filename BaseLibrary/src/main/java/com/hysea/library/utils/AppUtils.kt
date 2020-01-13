@@ -32,7 +32,7 @@ private var firstClickTime: Long = 0
  */
 fun doubleClickExit(timeInterval: Long = Constant.DEFAULT_EXIT_INTERVAL) {
     if (System.currentTimeMillis() - firstClickTime >= timeInterval) {
-        BaseApp.instance.showToast(getString(R.string.double_click_exit))
+        BaseApp.instance.showToast(R.string.double_click_exit)
         firstClickTime = System.currentTimeMillis()
     } else {
         AppManager.exitApp()

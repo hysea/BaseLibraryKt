@@ -1,7 +1,7 @@
 package com.hysea.library.app
 
 import com.hysea.library.base.BaseWebActivity
-import com.hysea.library.utils.getColor
+import com.hysea.library.utils.getResColor
 import com.hysea.library.view.TitleBar
 
 /**
@@ -10,7 +10,7 @@ import com.hysea.library.view.TitleBar
 class WebViewActivity : BaseWebActivity() {
     override fun setupTitleBar(titleBar: TitleBar) {
         titleBar.setTitle(mTitle)
-        titleBar.setTitleTextColor(getColor(mContext, android.R.color.holo_red_dark))
+        titleBar.setTitleTextColor(mContext.getResColor(android.R.color.holo_red_dark))
     }
 
 }

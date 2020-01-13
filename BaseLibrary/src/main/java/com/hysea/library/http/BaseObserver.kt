@@ -5,7 +5,6 @@ import com.hysea.library.R
 import com.hysea.library.base.BaseApp
 import com.hysea.library.http.exception.ApiException
 import com.hysea.library.interfaces.IResponse
-import com.hysea.library.utils.getString
 import com.hysea.library.utils.isConnected
 import com.hysea.library.utils.showToast
 import io.reactivex.Observer
@@ -25,7 +24,7 @@ abstract class BaseObserver<T>(var isToast: Boolean = true) : Observer<HttpResul
     final override fun onSubscribe(d: Disposable) {
         if (!isConnected(BaseApp.instance)) {
             // 没有网络
-            val ex = ApiException(ExceptionHandler.NOT_NETWORK_ERROR, getString(R.string.not_network))
+            val ex = ApiException(ExceptionHandler.NOT_NETWORK_ERROR, BaseApp.instance.getString(R.string.not_network))
             onFailure(ex)
             d.dispose()
         }

@@ -1,10 +1,6 @@
 package com.hysea.library.utils
 
-import android.content.Context
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.TextView
 
 /**
  * View相关工具类
@@ -32,28 +28,3 @@ fun View.show() {
 }
 
 fun <T : Any> T.TAG() = this::class.java.simpleName
-
-
-/**
- * 显示键盘
- */
-fun EditText.showInputMethod() {
-    this.requestFocus()
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-    imm?.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-}
-
-/**
- * 隐藏键盘
- */
-fun EditText.hideInputMethod() {
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-    imm?.hideSoftInputFromWindow(this.windowToken, 0)
-}
-
-/**
- * 获取文本控件内容
- */
-fun TextView.getContent(): String {
-    return this.text.toString()
-}
