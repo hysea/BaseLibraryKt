@@ -16,28 +16,28 @@ object LogUtils {
         LOG_ENABLE = enable
     }
 
-    fun v(msg: String) = v(tag = TAG(), msg = msg)
+    fun v(msg: String) = v(tag = tag(), msg = msg)
     fun v(tag: String, msg: String) {
         if (LOG_ENABLE) {
             Log.v(tag, msg)
         }
     }
 
-    fun i(msg: String) = i(tag = TAG(), msg = msg)
+    fun i(msg: String) = i(tag = tag(), msg = msg)
     fun i(tag: String, msg: String) {
         if (LOG_ENABLE) {
             Log.i(tag, msg)
         }
     }
 
-    fun d(msg: String) = d(tag = TAG(), msg = msg)
+    fun d(msg: String) = d(tag = tag(), msg = msg)
     fun d(tag: String, msg: String) {
         if (LOG_ENABLE) {
             Log.d(tag, msg)
         }
     }
 
-    fun e(msg: String) = e(tag = TAG(), msg = msg)
+    fun e(msg: String) = e(tag = tag(), msg = msg)
     fun e(tag: String, msg: String) {
         if (LOG_ENABLE) {
             Log.e(tag, msg)

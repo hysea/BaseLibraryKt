@@ -1,7 +1,7 @@
 package com.hysea.library.http
 
 import com.hysea.library.utils.LogUtils
-import com.hysea.library.utils.TAG
+import com.hysea.library.utils.tag
 import okhttp3.logging.HttpLoggingInterceptor
 import java.net.URLDecoder
 
@@ -30,7 +30,7 @@ class HttpLogger : HttpLoggingInterceptor.Logger {
         // 响应结束，打印整条日志
         if (message.startsWith("<-- END HTTP")) {
             mMessage.append("---------------------------------------------------------\n")
-            LogUtils.i(TAG(), mMessage.toString())
+            LogUtils.i(tag(), mMessage.toString())
         }
     }
 }

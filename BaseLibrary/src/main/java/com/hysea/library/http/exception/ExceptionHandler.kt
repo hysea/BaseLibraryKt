@@ -6,7 +6,7 @@ import com.hysea.library.base.BaseApp
 import com.hysea.library.http.exception.ApiException
 import com.hysea.library.http.exception.ServerException
 import com.hysea.library.utils.LogUtils
-import com.hysea.library.utils.TAG
+import com.hysea.library.utils.tag
 import org.json.JSONException
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -26,7 +26,7 @@ object ExceptionHandler {
     fun handleException(e: Throwable): ApiException = when (e) {
         is HttpException -> { // http异常
             val ex = ApiException(e.code(), e)
-            LogUtils.e(TAG(), "HttpException errorCode = ${e.code()}")
+            LogUtils.e(tag(), "HttpException errorCode = ${e.code()}")
             ex.msg = BaseApp.instance.getString(R.string.http_error)
             ex
         }
