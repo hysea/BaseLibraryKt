@@ -1,11 +1,8 @@
 package com.hysea.library.app
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.hysea.library.base.BaseWebActivity
-import com.hysea.library.constant.Constant
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,9 +12,5 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toWebView(view: View) {
-        val intent = Intent(this,WebViewActivity::class.java)
-        intent.putExtra(Constant.KEY_WEB_TITLE,"百度")
-        intent.putExtra(Constant.KEY_WEB_URL,"")
-        startActivity(intent)
     }
 }

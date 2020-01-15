@@ -8,9 +8,9 @@ import android.view.View
  * Created by hysea on 2018/7/3.
  */
 abstract class BaseLazyFragment : BaseFragment() {
-    protected var mIsViewCreated = false
-    protected var mIsVisibleToUser = false
-    protected var mIsFirstVisible = true
+    private var mIsViewCreated = false
+    private var mIsVisibleToUser = false
+    private var mIsFirstVisible = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

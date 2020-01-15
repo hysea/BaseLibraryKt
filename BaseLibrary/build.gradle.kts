@@ -24,6 +24,10 @@ android {
     lintOptions {
         isAbortOnError = false
     }
+
+    androidExtensions {
+        isExperimental = true
+    }
 }
 
 dependencies {

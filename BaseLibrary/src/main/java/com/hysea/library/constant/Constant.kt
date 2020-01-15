@@ -14,9 +14,6 @@ open class Constant {
         const val FORMAT_H_M = "HH:mm"
         const val FORMAT_H_M_S = "HH:mm:ss"
 
-        const val KEY_WEB_TITLE = "web_title"
-        const val KEY_WEB_URL = "web_url"
-
         /**
          * 默认退出app的间隔时间
          */
