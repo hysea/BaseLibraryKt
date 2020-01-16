@@ -47,6 +47,7 @@ dependencies {
     implementation("com.squareup.retrofit2:adapter-rxjava2:2.6.1")
     implementation("io.reactivex.rxjava2:rxjava:2.2.10")
     implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
     implementation("com.github.bumptech.glide:glide:4.10.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
     implementation("com.scwang.smartrefresh:SmartRefreshLayout:1.1.0")

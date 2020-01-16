@@ -2,6 +2,7 @@ package com.hysea.library.utils
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,17 @@ inline val Context.screenWidth
 inline val Context.screenHeight
     get() = resources.displayMetrics.heightPixels
 
+inline val Context.versionName
+    get() = packageManager.getPackageInfo(packageName, 0).versionName
+
+inline val Context.versionCode
+    get() = with(packageManager.getPackageInfo(packageName, 0)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            longVersionCode
+        } else {
+            versionCode.toLong()
+        }
+    }
 
 fun Context.dp2px(value: Float): Int = (value * resources.displayMetrics.density).toInt()
 fun Context.px2dp(value: Int): Float = value / resources.displayMetrics.density

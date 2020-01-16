@@ -10,7 +10,7 @@ import java.security.MessageDigest
  * Created by hysea on 2018/8/20.
  */
 
-const val ENCRYPT_STR = "0123456789abcdef"
+private const val ENCRYPT_STR = "0123456789abcdef"
 
 /**
  * MD5加密字符串
@@ -59,11 +59,17 @@ fun encrypt(str: String?, encryptType: String): String {
     if (str.isNullOrBlank()) {
         return ""
     }
+   return encrypt(str.toByteArray(),encryptType)
+}
 
+fun encrypt(byteArray: ByteArray?, encryptType: String):String {
+    if (byteArray == null || byteArray.isEmpty()) {
+        return ""
+    }
     return try {
         val bytes = MessageDigest
                 .getInstance(encryptType)
-                .digest(str?.toByteArray())
+                .digest(byteArray)
         val result = StringBuilder(bytes.size * 2)
 
         bytes.forEach {
@@ -71,7 +77,7 @@ fun encrypt(str: String?, encryptType: String): String {
             result.append(ENCRYPT_STR[i shr 4 and 0x0f])
             result.append(ENCRYPT_STR[i and 0x0f])
         }
-        result.toString().toLowerCase()
+        result.toString()
     } catch (e: Exception) {
         e.printStackTrace()
         ""
