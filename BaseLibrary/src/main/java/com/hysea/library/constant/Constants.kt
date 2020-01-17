@@ -7,7 +7,7 @@ import androidx.annotation.IntDef
  * 常量
  * Created by hysea on 2018/8/20.
  */
-open class Constant {
+open class Constants {
     companion object {
         const val FORMAT_Y_TO_S = "yyyy-MM-dd HH:mm:ss"
         const val FORMAT_Y_M_D = "yyyy-MM-dd"
@@ -23,6 +23,8 @@ open class Constant {
          * 缓冲大小
          */
         const val BUFFER_SIZE = 1024 * 4
+
+        const val NONE = -1
 
 
         const val BYTE = 1

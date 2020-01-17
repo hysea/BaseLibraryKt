@@ -1,7 +1,7 @@
 package com.hysea.library.utils
 
 import android.content.Context
-import com.hysea.library.constant.Constant
+import com.hysea.library.constant.Constants
 
 /**
  * 转换相关工具类
@@ -43,7 +43,7 @@ fun sp2px(context: Context, spValue: Float): Int {
 /**
  * 字节转换成指定的单位
  */
-fun byteToMemorySize(byteSize: Long, @Constant.MemoryUnit unit: Int): Double {
+fun byteToMemorySize(byteSize: Long, @Constants.MemoryUnit unit: Int): Double {
     if (byteSize < 0) return 0.0
     return (byteSize / unit).toDouble()
 }
@@ -55,9 +55,9 @@ fun byteToMemorySize(byteSize: Long, @Constant.MemoryUnit unit: Int): Double {
 fun byteToFitMemorySize(byteSize: Long): String {
     return when {
         byteSize < 0 -> "shouldn't be less than zero!"
-        byteSize < Constant.KB -> String.format("%.2fB", byteSize)
-        byteSize < Constant.MB -> String.format("%.2fKB", byteSize.toDouble() / Constant.KB)
-        byteSize < Constant.GB -> String.format("%.2fMB", byteSize.toDouble() / Constant.MB)
-        else -> String.format("%.2fGB", byteSize.toDouble() / Constant.GB)
+        byteSize < Constants.KB -> String.format("%.2fB", byteSize)
+        byteSize < Constants.MB -> String.format("%.2fKB", byteSize.toDouble() / Constants.KB)
+        byteSize < Constants.GB -> String.format("%.2fMB", byteSize.toDouble() / Constants.MB)
+        else -> String.format("%.2fGB", byteSize.toDouble() / Constants.GB)
     }
 }

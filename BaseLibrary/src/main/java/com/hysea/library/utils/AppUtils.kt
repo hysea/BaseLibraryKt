@@ -2,7 +2,7 @@ package com.hysea.library.utils
 
 import com.hysea.library.R
 import com.hysea.library.base.BaseApp
-import com.hysea.library.constant.Constant
+import com.hysea.library.constant.Constants
 
 /**
  * @create @author hysea 2018/8/21
@@ -36,7 +36,7 @@ private var firstClickTime: Long = 0
 /**
  * 双击点击退出app
  */
-fun doubleClickExit(timeInterval: Long = Constant.DEFAULT_EXIT_INTERVAL, block: () -> Unit) {
+fun doubleClickExit(timeInterval: Long = Constants.DEFAULT_EXIT_INTERVAL, block: () -> Unit) {
     if (System.currentTimeMillis() - firstClickTime >= timeInterval) {
         BaseApp.instance.showToast(R.string.double_click_exit)
         firstClickTime = System.currentTimeMillis()

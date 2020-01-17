@@ -1,8 +1,11 @@
 package com.hysea.library.utils
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,4 +56,26 @@ fun Context.showToast(@StringRes id: Int, duration: Int = Toast.LENGTH_SHORT) {
 
 fun Context.inflateLayout(@LayoutRes resource: Int, root: ViewGroup? = null, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(this).inflate(resource, root, attachToRoot)
+}
+
+fun <T : Any> Context.readGo(clazz: Class<T>, bundle: Bundle? = null, isFinish: Boolean = false) {
+    Intent(this, clazz).also { intent ->
+        bundle?.let { intent.putExtras(it) }
+        startActivity(intent)
+        if (this is Activity && isFinish) {
+            this.finish()
+        }
+    }
+}
+
+fun <T : Any> Context.readGoForResult(clazz: Class<T>, requestCode: Int, bundle: Bundle? = null, isFinish: Boolean = false) {
+    Intent(this, clazz).also { intent ->
+        bundle?.let { intent.putExtras(it) }
+        if (this is Activity) {
+            this.startActivityForResult(intent, requestCode)
+            if (isFinish) {
+                this.finish()
+            }
+        }
+    }
 }

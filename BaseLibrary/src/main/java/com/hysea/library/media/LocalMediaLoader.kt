@@ -2,9 +2,9 @@ package com.hysea.library.media
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.AsyncTask
 import android.provider.MediaStore
-import java.util.*
+import com.hysea.library.utils.applySchedules
+import io.reactivex.Observable
 
 
 /**
@@ -13,22 +13,16 @@ import java.util.*
  */
 object LocalMediaLoader {
 
-    @SuppressLint("StaticFieldLeak")
-    fun loadMedia(context: Context, type: MediaType, listener: LocalMediaListener?) {
-        object : AsyncTask<Void, Int, List<MediaItem>>() {
-            override fun doInBackground(vararg voids: Void): List<MediaItem>? {
-                when (type) {
-                    MediaType.TYPE_VIDEO -> return loadMediaVideo(context)
-                    MediaType.TYPE_PICTURE -> return loadMediaPicture(context)
-                }
-                return null
+    @SuppressLint("CheckResult")
+    fun loadMedia(context: Context, type: MediaType, loadComplete: (List<MediaItem>?) -> Unit) {
+        Observable.create<List<MediaItem>?> {
+            when (type) {
+                MediaType.TYPE_VIDEO -> loadMediaVideo(context)
+                MediaType.TYPE_PICTURE -> loadMediaPicture(context)
             }
-
-            override fun onPostExecute(mediaInfos: List<MediaItem>) {
-                super.onPostExecute(mediaInfos)
-                listener?.onLoadComplete(mediaInfos)
-            }
-        }.execute()
+        }.applySchedules().subscribe {
+            loadComplete.invoke(it)
+        }
     }
 
     /**
@@ -40,7 +34,7 @@ object LocalMediaLoader {
         val sortOrder = MediaStore.Video.Media.DATE_ADDED + " DESC"
 
         val cursor = resolver.query(uri, null, null, null, sortOrder)
-        val result = ArrayList<MediaItem>()
+        val result = mutableListOf<MediaItem>()
 
         if (cursor != null && cursor.count > 0) {
             while (cursor.moveToNext()) {
@@ -50,7 +44,12 @@ object LocalMediaLoader {
                 val height = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns.HEIGHT))
                 // 过滤掉时长为0的数据
                 if (duration > 0) {
-                    result.add(MediaItem(path = path, durationMs = duration, mediaType = MediaType.TYPE_VIDEO, width = width, height = height))
+                    result.add(MediaItem(
+                            path = path,
+                            durationMs = duration,
+                            mediaType = MediaType.TYPE_VIDEO,
+                            width = width,
+                            height = height))
                 }
             }
             cursor.close()
@@ -69,7 +68,7 @@ object LocalMediaLoader {
         val sortOrder = MediaStore.Video.Media.DATE_ADDED + " DESC"
 
         val cursor = resolver.query(uri, null, null, null, sortOrder)
-        val result = ArrayList<MediaItem>()
+        val result = mutableListOf<MediaItem>()
 
         if (cursor != null && cursor.count > 0) {
             while (cursor.moveToNext()) {
@@ -78,16 +77,16 @@ object LocalMediaLoader {
                 val width = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns.WIDTH))
                 val height = cursor.getInt(cursor.getColumnIndex(MediaStore.MediaColumns.HEIGHT))
 
-                result.add(MediaItem(path = path, size = size, mediaType = MediaType.TYPE_PICTURE, width = width, height = height))
+                result.add(MediaItem(
+                        path = path,
+                        size = size,
+                        mediaType = MediaType.TYPE_PICTURE,
+                        width = width,
+                        height = height))
             }
             cursor.close()
         }
 
         return result
-    }
-
-
-    interface LocalMediaListener {
-        fun onLoadComplete(mediaItems: List<MediaItem>)
     }
 }

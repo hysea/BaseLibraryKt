@@ -1,6 +1,6 @@
 package com.hysea.library.utils
 
-import com.hysea.library.constant.Constant
+import com.hysea.library.constant.Constants
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,7 +30,7 @@ fun formatDuration(duration: Long): String {
  * @param timeStamp 时间戳，单位ms
  * @param format 格式，默认为：yyyy-MM-dd HH:mm:ss
  */
-fun formatTime(timeStamp: Long, format: String = Constant.FORMAT_Y_TO_S): String {
+fun formatTime(timeStamp: Long, format: String = Constants.FORMAT_Y_TO_S): String {
     val dateFormat = SimpleDateFormat(format, Locale.getDefault())
     return dateFormat.format(timeStamp)
 }

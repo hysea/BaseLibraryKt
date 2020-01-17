@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import android.widget.RelativeLayout
+import android.widget.FrameLayout
 import com.hysea.library.R
 import com.hysea.library.utils.hide
 import com.hysea.library.utils.show
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.layout_title_bar.view.*
 /**
  * 通用标题栏
  */
-class TitleBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : RelativeLayout(context, attrs), View.OnClickListener {
+class TitleBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs), View.OnClickListener {
     /**
      * 右边按钮的文字颜色
      */
@@ -99,7 +99,7 @@ class TitleBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         rightButtonTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_right_button_textSize, sp2px(context, 15f))
 
         isShowLine = typedArray.getBoolean(R.styleable.TitleBar_show_line, true)
-        mContentView.line.visibility = if (isShowLine) View.VISIBLE else View.GONE
+        mContentView.dividerLine.visibility = if (isShowLine) View.VISIBLE else View.GONE
 
         setTitleBarBackground(titleBackgroundColor)
         setTitle(titleText)
@@ -121,27 +121,27 @@ class TitleBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
     fun setTitle(title: String?) {
         if (title.isNullOrEmpty()) {
-            mContentView.mTvTitle.hide()
+            mContentView.tvTitle.hide()
         } else {
-            mContentView.mTvTitle.text = title
-            mContentView.mTvTitle.show()
+            mContentView.tvTitle.text = title
+            mContentView.tvTitle.show()
         }
     }
 
     fun setTitleTextSize(textSize: Int) {
-        mContentView.mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
+        mContentView.tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
     }
 
     fun setTitleTextColor(textColor: Int) {
-        mContentView.mTvTitle.setTextColor(textColor)
+        mContentView.tvTitle.setTextColor(textColor)
     }
 
     fun setTvLeft(text: String?) {
         if (text.isNullOrEmpty()) {
-            mContentView.mTvLeft.hide()
+            mContentView.tvLeft.hide()
         } else {
-            mContentView.mTvLeft.show()
-            mContentView.mTvLeft.text = text
+            mContentView.tvLeft.show()
+            mContentView.tvLeft.text = text
         }
     }
 
@@ -149,88 +149,88 @@ class TitleBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
      * @param textSize 以px为单位
      */
     fun setTvLeftTextSize(textSize: Int) {
-        mContentView.mTvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
+        mContentView.tvLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
     }
 
     fun setTvLeftTextColor(textColor: Int) {
-        mContentView.mTvLeft.setTextColor(textColor)
+        mContentView.tvLeft.setTextColor(textColor)
     }
 
     fun setTvRight(text: String?) {
         if (text.isNullOrEmpty()) {
-            mContentView.mTvRight.visibility = View.GONE
+            mContentView.tvRight.visibility = View.GONE
         } else {
-            mContentView.mTvRight.visibility = View.VISIBLE
-            mContentView.mTvRight.text = text
+            mContentView.tvRight.visibility = View.VISIBLE
+            mContentView.tvRight.text = text
         }
     }
 
 
     fun setTvRightTextSize(textSize: Int) {
-        mContentView.mTvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
+        mContentView.tvRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
     }
 
 
     fun setTvRightTextColor(textColor: Int) {
-        mContentView.mTvRight.setTextColor(textColor)
+        mContentView.tvRight.setTextColor(textColor)
     }
 
 
     fun setLeftIcon(resId: Int) {
         if (resId == 0) {
-            mContentView.mIvLeft.hide()
+            mContentView.ivLeft.hide()
         } else {
-            mContentView.mIvLeft.show()
-            mContentView.mIvLeft.setImageResource(resId)
+            mContentView.ivLeft.show()
+            mContentView.ivLeft.setImageResource(resId)
         }
     }
 
     fun setRightIcon(resId: Int) {
         if (resId == 0) {
-            mContentView.mIvRight.hide()
+            mContentView.ivRight.hide()
         } else {
-            mContentView.mIvRight.show()
-            mContentView.mIvRight.setImageResource(resId)
+            mContentView.ivRight.show()
+            mContentView.ivRight.setImageResource(resId)
         }
     }
 
     fun setAction(listener: (View) -> Unit) {
-        mContentView.mIvLeft.setOnClickListener(this)
-        mContentView.mIvRight.setOnClickListener(this)
-        mContentView.mTvLeft.setOnClickListener(this)
-        mContentView.mTvRight.setOnClickListener(this)
+        mContentView.ivLeft.setOnClickListener(this)
+        mContentView.ivRight.setOnClickListener(this)
+        mContentView.tvLeft.setOnClickListener(this)
+        mContentView.tvRight.setOnClickListener(this)
         mTitleBarOnClickListener = listener
     }
 
 
     fun setLineIsVisible(visibility: Int) {
-        mContentView.line.visibility = visibility
+        mContentView.dividerLine.visibility = visibility
     }
 
 
     fun setShowRightButton(showRightButton: Boolean) {
         if (showRightButton) {
-            mContentView.mTvRight.show()
-            mContentView.mIvRight.show()
+            mContentView.tvRight.show()
+            mContentView.ivRight.show()
         } else {
-            mContentView.mTvRight.hide()
-            mContentView.mIvRight.hide()
+            mContentView.tvRight.hide()
+            mContentView.ivRight.hide()
         }
     }
 
     fun setShowLeftButton(showLeftButton: Boolean) {
         if (showLeftButton) {
-            mContentView.mTvLeft.show()
-            mContentView.mIvLeft.show()
+            mContentView.tvLeft.show()
+            mContentView.ivLeft.show()
         } else {
-            mContentView.mTvLeft.hide()
-            mContentView.mIvLeft.hide()
+            mContentView.tvLeft.hide()
+            mContentView.ivLeft.hide()
         }
     }
 
 
     fun setTitleBarBackground(resId: Int) {
-        mContentView.mRelativeLayout.setBackgroundColor(resId)
+        mContentView.titleLayout.setBackgroundColor(resId)
     }
 
     interface TitleBarOnClickListener {

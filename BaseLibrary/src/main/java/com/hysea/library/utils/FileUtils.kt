@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Environment
 import android.text.TextUtils
 import com.hysea.library.base.BaseApp
-import com.hysea.library.constant.Constant.Companion.BUFFER_SIZE
+import com.hysea.library.constant.Constants.Companion.BUFFER_SIZE
 import java.io.*
 
 /**

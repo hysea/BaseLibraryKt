@@ -19,33 +19,4 @@ interface IBaseView {
      */
     fun init(savedInstanceState: Bundle?)
 
-    /**
-     * 跳转页面，无参数
-     */
-    fun <T : Any> readGo(clazz: Class<T>)
-
-    /**
-     * 跳转页面，带参数
-     */
-    fun <T : Any> readGo(clazz: Class<T>, bundle: Bundle?)
-
-    /**
-     * 跳转页面，无参数，并销毁该界面
-     */
-    fun <T : Any> readGoThenFinish(clazz: Class<T>)
-
-    /**
-     * 跳转页面，带参数，并销毁该界面
-     */
-    fun <T : Any> readGoThenFinish(clazz: Class<T>, bundle: Bundle?)
-
-    /**
-     * 跳转页面返回结果，无参数
-     */
-    fun <T : Any> readGoForResult(clazz: Class<T>, requestCode: Int)
-
-    /**
-     * 跳转页面返回结果，带参数
-     */
-    fun <T : Any> readGoForResult(clazz: Class<T>, bundle: Bundle?, requestCode: Int)
 }

@@ -8,29 +8,29 @@ import android.view.View
  * Created by hysea on 2018/7/3.
  */
 abstract class BaseLazyFragment : BaseFragment() {
-    private var mIsViewCreated = false
-    private var mIsVisibleToUser = false
-    private var mIsFirstVisible = true
+    private var isViewCreated = false
+    private var isVisibleToUser = false
+    private var isFirstVisible = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mIsViewCreated = true
-        if (mIsVisibleToUser) {
+        isViewCreated = true
+        if (isVisibleToUser) {
             onLazyLoad()
-            mIsFirstVisible = false
+            isFirstVisible = false
             fragmentResume()
         }
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        mIsVisibleToUser = isVisibleToUser
-        if (!mIsViewCreated) return // 如果视图未创建完成就返回
+        this.isVisibleToUser = isVisibleToUser
+        if (!isViewCreated) return // 如果视图未创建完成就返回
         if (isVisibleToUser) {
             fragmentResume()
-            if (mIsFirstVisible) {
+            if (isFirstVisible) {
                 onLazyLoad()
-                mIsFirstVisible = false
+                isFirstVisible = false
             }
         } else {
             fragmentPause()

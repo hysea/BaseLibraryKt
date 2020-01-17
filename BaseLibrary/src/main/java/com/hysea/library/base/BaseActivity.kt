@@ -1,7 +1,6 @@
 package com.hysea.library.base
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
@@ -15,13 +14,11 @@ import com.hysea.library.manager.AppManager
  * Created by hysea on 2018/6/27.
  */
 abstract class BaseActivity : AppCompatActivity(), IBaseView {
-    protected lateinit var mContext: Context
     private var immersionBar: ImmersionBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
-        mContext = this
         initSetup(savedInstanceState)
     }
 
@@ -64,43 +61,6 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
      */
     open fun hideLoading() {
 
-    }
-
-    final override fun <T : Any> readGo(clazz: Class<T>) {
-        readGo(clazz, null)
-    }
-
-    final override fun <T : Any> readGo(clazz: Class<T>, bundle: Bundle?) {
-        val intent = Intent(this, clazz)
-        bundle?.let {
-            intent.putExtras(bundle)
-        }
-        startActivity(intent)
-    }
-
-    final override fun <T : Any> readGoThenFinish(clazz: Class<T>) {
-        readGoThenFinish(clazz, null)
-    }
-
-    final override fun <T : Any> readGoThenFinish(clazz: Class<T>, bundle: Bundle?) {
-        val intent = Intent(this, clazz)
-        bundle?.let {
-            intent.putExtras(it)
-        }
-        startActivity(intent)
-        finish()
-    }
-
-    final override fun <T : Any> readGoForResult(clazz: Class<T>, requestCode: Int) {
-        readGoForResult(clazz, null, requestCode)
-    }
-
-    final override fun <T : Any> readGoForResult(clazz: Class<T>, bundle: Bundle?, requestCode: Int) {
-        val intent = Intent(this, clazz)
-        bundle?.let {
-            intent.putExtras(it)
-        }
-        startActivityForResult(intent, requestCode)
     }
 
     override fun onDestroy() {
