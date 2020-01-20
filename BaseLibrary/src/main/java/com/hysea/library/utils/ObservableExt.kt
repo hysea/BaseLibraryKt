@@ -2,6 +2,7 @@ package com.hysea.library.utils
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
@@ -15,13 +16,13 @@ fun <T> Observable<T>.applySchedules(): Observable<T> {
 }
 
 
-fun timerAction(delay: Long, action: (Long) -> Unit) =
+fun timerAction(delay: Long, action: (Long) -> Unit): Disposable =
         Observable.timer(delay, TimeUnit.SECONDS)
                 .subscribe {
                     action.invoke(it)
                 }
 
-fun countdownAction(time: Long, action: (Long) -> Unit) =
+fun countdownAction(time: Long, action: (Long) -> Unit): Disposable =
         Observable.intervalRange(0, time + 1, 0, 1, TimeUnit.SECONDS)
                 .applySchedules()
                 .subscribe {

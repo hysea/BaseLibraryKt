@@ -1,10 +1,7 @@
 package com.hysea.library.base
 
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.hysea.library.R
@@ -47,22 +44,14 @@ abstract class BaseDialogFragment : DialogFragment() {
     }
 
     private fun setupParams() {
-        dialog?.window?.let {
-            val params = it.attributes
-            params.dimAmount = dimAmount
-            if (showBottomEnable) {
-                params.gravity = Gravity.BOTTOM
-            }
-            params.width = context!!.screenWidth - 2 * context!!.dp2px(margin)
-            if (height > 0) {
-                params.height = context!!.dp2px(height)
-            } else {
-                params.height = height.toInt()
-            }
-            if (animStyle != Constants.NONE) {
-                it.setWindowAnimations(animStyle)
-            }
-            it.attributes = params
+        dialog?.window?.also {
+            val lp = it.attributes
+            lp.dimAmount = dimAmount
+            lp.width = context!!.screenWidth - 2 * context!!.dp2px(margin)
+            lp.height = if (height > 0) context!!.dp2px(height) else WindowManager.LayoutParams.WRAP_CONTENT
+            if (showBottomEnable) { lp.gravity = Gravity.BOTTOM }
+            if (animStyle != Constants.NONE) { it.setWindowAnimations(animStyle) }
+            it.attributes = lp
         }
         dialog?.setCanceledOnTouchOutside(isCancelOnTouchOutSide)
     }

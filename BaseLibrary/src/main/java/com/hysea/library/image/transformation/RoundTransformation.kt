@@ -18,7 +18,7 @@ class RoundTransformation(context: Context, var radius: Float) : BitmapTransform
 
     init {
         // 将单位dp换算成单位px
-        radius = dp2px(context, radius).toFloat()
+        radius = context.dp2px(radius).toFloat()
     }
 
     override fun transform(@NonNull pool: BitmapPool, @NonNull toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {

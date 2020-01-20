@@ -23,23 +23,23 @@ fun md5Encrypt(str: String?) {
  * MD5加密文件
  */
 fun md5Encrypt(file: File): ByteArray? {
-    if (exists(file)) {
-        var fis: FileInputStream? = null
-        var channel: FileChannel? = null
-        try {
-            fis = FileInputStream(file)
-            channel = fis.channel
-            val buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, file.length())
-            val md = MessageDigest.getInstance("MD5")
-            md.update(buffer)
-            return md.digest()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            channel?.closeQuietly()
-            fis?.closeQuietly()
-        }
-    }
+//    if (exists(file)) {
+//        var fis: FileInputStream? = null
+//        var channel: FileChannel? = null
+//        try {
+//            fis = FileInputStream(file)
+//            channel = fis.channel
+//            val buffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, file.length())
+//            val md = MessageDigest.getInstance("MD5")
+//            md.update(buffer)
+//            return md.digest()
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        } finally {
+//            channel?.closeQuietly()
+//            fis?.closeQuietly()
+//        }
+//    }
     return null
 }
 

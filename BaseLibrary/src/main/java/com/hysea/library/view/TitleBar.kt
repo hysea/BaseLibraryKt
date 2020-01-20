@@ -91,12 +91,12 @@ class TitleBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         titleBackgroundColor = typedArray.getColor(R.styleable.TitleBar_title_background, Color.WHITE)
         titleText = typedArray.getString(R.styleable.TitleBar_title_text)
         titleTextColor = typedArray.getColor(R.styleable.TitleBar_title_textColor, Color.GRAY)
-        titleTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_title_textSize, sp2px(context, 15f))
+        titleTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_title_textSize, context.sp2px(15f))
 
         rightButtonImageId = typedArray.getResourceId(R.styleable.TitleBar_right_button_image, 0)
         rightButtonText = typedArray.getString(R.styleable.TitleBar_right_button_text)
         rightButtonTextColor = typedArray.getColor(R.styleable.TitleBar_right_button_textColor, Color.GRAY)
-        rightButtonTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_right_button_textSize, sp2px(context, 15f))
+        rightButtonTextSize = typedArray.getDimensionPixelSize(R.styleable.TitleBar_right_button_textSize, context.sp2px(15f))
 
         isShowLine = typedArray.getBoolean(R.styleable.TitleBar_show_line, true)
         mContentView.dividerLine.visibility = if (isShowLine) View.VISIBLE else View.GONE
