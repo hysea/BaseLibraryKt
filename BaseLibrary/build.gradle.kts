@@ -53,7 +53,7 @@ dependencies {
     implementation("com.scwang.smartrefresh:SmartRefreshLayout:1.1.0")
     implementation("com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47")
     implementation("com.gyf.barlibrary:barlibrary:2.3.0")
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:1.6.3")
+    implementation("me.jessyan:autosize:1.1.2")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.1")
     releaseImplementation("com.squareup.leakcanary:leakcanary-android-no-op:1.6.3")
-    implementation(files("libs/tbs_sdk_thirdapp_v3.6.0.jar"))
 }
