@@ -15,23 +15,20 @@ import io.reactivex.disposables.Disposable
  * BaseObserver
  * Created by hysea on 2018/6/28.
  */
-abstract class BaseObserver<T>(var isToast: Boolean = true) : Observer<HttpResult<T>>, IResponse<T?> {
-    /**
-     * 服务器返回的消息提示
-     */
-    val messageTip: String = ""
+abstract class BaseObserver<T> : Observer<HttpResult<T>>, IResponse<T?> {
+
 
     final override fun onSubscribe(d: Disposable) {
-        if (!isConnected(BaseApp.instance)) {
-            // 没有网络
-            val ex = ApiException(ExceptionHandler.NOT_NETWORK_ERROR, BaseApp.instance.getString(R.string.not_network))
-            onFailure(ex)
-            d.dispose()
-        }
+//        if (!isConnected(BaseApp.instance)) {
+//            // 没有网络
+//            val ex = ApiException(ExceptionHandler.NOT_NETWORK_ERROR, BaseApp.instance.getString(R.string.not_network))
+//            onFailure(ex)
+//            d.dispose()
+//        }
         onStart()
     }
 
-    override fun onNext(t: HttpResult<T>) {
+    final override fun onNext(t: HttpResult<T>) {
         if (t.isSuccess()) { // 请求成功
             onSuccess(t.data)
         } else {
@@ -40,19 +37,14 @@ abstract class BaseObserver<T>(var isToast: Boolean = true) : Observer<HttpResul
         }
     }
 
-    override fun onComplete() {
-    }
-
     final override fun onError(e: Throwable) {
         val exception = ExceptionHandler.handleException(e)
         onFailure(exception)
     }
 
-    override fun onFailure(ex: ApiException) {
-        if (isToast) {
-            BaseApp.instance.showToast(ex.msg)
-        }
-    }
-
     override fun onStart() {}
+
+    override fun onComplete() {}
+
+    override fun onFailure(ex: ApiException) {}
 }

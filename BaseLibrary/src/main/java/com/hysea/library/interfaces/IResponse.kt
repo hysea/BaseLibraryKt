@@ -9,11 +9,16 @@ import com.hysea.library.http.exception.ApiException
  */
 interface IResponse<T> {
     /**
-     * 开始请求，主要是用于进度条加载显示
+     * 开始请求，可以是用于进度条加载显示
      */
     fun onStart()
 
     /**
+     * 请求完成，
+     */
+    fun onComplete()
+
+   /**
      * 请求成功
      */
     fun onSuccess(t: T?)

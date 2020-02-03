@@ -12,6 +12,10 @@ android {
         versionCode = 1
         versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters("armeabi") // "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
+        }
     }
 
     buildTypes {
@@ -55,5 +59,6 @@ dependencies {
     implementation("com.gyf.barlibrary:barlibrary:2.3.0")
     implementation("me.jessyan:autosize:1.1.2")
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.1")
-    releaseImplementation("com.squareup.leakcanary:leakcanary-android-no-op:1.6.3")
+    implementation("com.tencent.bugly:crashreport:3.0.0")
+    implementation("com.tencent.bugly:nativecrashreport:3.7.1")
 }

@@ -16,18 +16,15 @@ import java.util.concurrent.TimeUnit
 object HttpManager {
     private const val CONNECT_TIMEOUT = 15L
     private const val READ_TIMEOUT = 15L
-    private const val WRITE_TIMEOUT = 20L
+    private const val WRITE_TIMEOUT = 15L
 
     private val mOkHttpClient: OkHttpClient by lazy {
-        // 懒加载初始化OkHttpClient
-        // 日志拦截器
-
         val builder = OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                 // 处理参数
-                .addInterceptor(RequestInterceptor())
+                .addInterceptor(RequestHeaderInterceptor())
 
         if (BuildConfig.DEBUG) {
             // 打印日志
@@ -50,7 +47,7 @@ object HttpManager {
     }
 
     @JvmStatic
-    fun <T : Any> createReq(clazz: Class<T>): T {
+    fun <T : Any> createRequest(clazz: Class<T>): T {
         return mRetrofit.create(clazz)
     }
 }

@@ -6,10 +6,10 @@ import okhttp3.Response
 import java.io.IOException
 
 /**
- * 参数请求拦截器
- * 用于添加参数，如token
+ * 请求参数头拦截器
+ * 用于添加统一的header，如token
  */
-class RequestInterceptor : Interceptor {
+class RequestHeaderInterceptor : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val oldRequest = chain.request()

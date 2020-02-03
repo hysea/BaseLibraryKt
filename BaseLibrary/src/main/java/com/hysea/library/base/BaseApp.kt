@@ -3,8 +3,7 @@ package com.hysea.library.base
 import android.app.Application
 import com.hysea.library.BuildConfig
 import com.hysea.library.utils.LogUtils
-import com.squareup.leakcanary.LeakCanary
-import com.tencent.smtt.sdk.QbSdk
+import com.tencent.bugly.crashreport.CrashReport
 import kotlin.properties.Delegates
 
 /**
@@ -21,34 +20,13 @@ abstract class BaseApp : Application() {
         super.onCreate()
         instance = this
         LogUtils.setLogEnable(BuildConfig.DEBUG)
-        initLeakCanary()
-        initX5()
+        initBugly()
     }
 
-    /**
-     * 内存泄漏检测
-     */
-    private fun initLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
-        }
-        LeakCanary.install(this)
-    }
 
-    /**
-     * 初始化X5内核
-     */
-    private fun initX5() {
-        QbSdk.initX5Environment(this, object : QbSdk.PreInitCallback {
-            override fun onCoreInitFinished() {
-                //x5内核初始化完成回调接口，此接口回调并表示已经加载起来了x5，有可能特殊情况下x5内核加载失败，切换到系统内核。
-            }
-
-            override fun onViewInitFinished(b: Boolean) {
-                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
-                LogUtils.i("加载内核是否成功:$b")
-            }
-        })
+    private fun initBugly() {
+        CrashReport.initCrashReport(this, "", BuildConfig.DEBUG)
+        CrashReport.setAppVersion(this, "${BuildConfig.VERSION_NAME}-${BuildConfig.VERSION_CODE}-${if (BuildConfig.DEBUG) "DEBUG" else "RELEASE"}")
     }
 
     /**
