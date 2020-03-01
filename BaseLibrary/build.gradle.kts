@@ -55,7 +55,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.10.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
     implementation("com.scwang.smartrefresh:SmartRefreshLayout:1.1.0")
-    implementation("com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47")
+//    implementation("com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47")
     implementation("com.gyf.barlibrary:barlibrary:2.3.0")
     implementation("me.jessyan:autosize:1.1.2")
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.1")
