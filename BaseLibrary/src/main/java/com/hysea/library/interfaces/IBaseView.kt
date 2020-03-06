@@ -19,4 +19,8 @@ interface IBaseView {
      */
     fun init(savedInstanceState: Bundle?)
 
+    /**
+     * 初始化相关事件
+     */
+    fun initEvent()
 }

@@ -7,8 +7,11 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.provider.Settings
+import com.hysea.library.base.BaseApp
 import com.hysea.library.constant.Constants
 import java.io.File
+import java.util.*
 
 /**
  * App相关扩展工具类
@@ -35,6 +38,21 @@ inline val systemVersion
 
 inline val sdkVersion
     get() = Build.VERSION.SDK_INT
+
+fun getDeviceToken(): String {
+    var deviceToken = Preference.get<String>("device_token")
+    if (deviceToken.isNotEmpty()) {
+        return deviceToken
+    }
+
+    var androidId =
+        Settings.System.getString(BaseApp.instance.contentResolver, Settings.Secure.ANDROID_ID)
+    if (androidId.isNullOrEmpty() || androidId == "9774d56d682e549c") {
+        androidId = UUID.randomUUID().toString()
+    }
+    Preference.save("device_token", androidId)
+    return androidId
+}
 
 
 private var firstClickTime: Long = 0

@@ -24,7 +24,7 @@ object ThreadPools {
         mainHandler.postDelayed(task, delay)
     }
 
-    fun postOnQuene(task: () -> Unit) {
+    fun postOnQueue(task: () -> Unit) {
         handler.post(task)
     }
 

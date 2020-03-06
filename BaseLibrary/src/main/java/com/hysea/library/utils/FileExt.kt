@@ -77,7 +77,8 @@ fun String.getFileNameWithExt() = this.substringAfterLast(File.separator)
 fun String.getFileName() = this.getFileNameWithExt().substringBeforeLast(".")
 
 /** 检查sd卡是否可用 */
-private fun checkSDCardAvailable(): Boolean = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+private fun checkSDCardAvailable(): Boolean =
+    Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
 
 /** 获取sd卡根目录 */
 fun getSDCardDir(context: Context): String {
@@ -133,6 +134,13 @@ fun File.readFileToBytes(): ByteArray = this.readBytes()
 
 fun File.readFileToText(): String = this.readText()
 
+fun readFileToTextFromAssets(context: Context, fileName: String): String {
+    return context.assets.open(fileName).reader().readText()
+}
+
+fun readFileToBytesFromAssets(context: Context, fileName: String): ByteArray {
+    return context.assets.open(fileName).readBytes()
+}
 
 fun File.toUri(context: Context): Uri {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -142,5 +150,6 @@ fun File.toUri(context: Context): Uri {
         Uri.fromFile(this)
     }
 }
+
 
 

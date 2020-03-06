@@ -12,19 +12,27 @@ import java.util.concurrent.TimeUnit
 
 fun <T> Observable<T>.applySchedules(): Observable<T> {
     return this.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        .observeOn(AndroidSchedulers.mainThread())
 }
 
 
-fun timerAction(delay: Long, action: (Long) -> Unit): Disposable =
-        Observable.timer(delay, TimeUnit.SECONDS)
-                .subscribe {
-                    action.invoke(it)
-                }
+fun timerAction(
+    delay: Long,
+    unit: TimeUnit = TimeUnit.SECONDS,
+    action: (Long) -> Unit
+): Disposable =
+    Observable.timer(delay, unit)
+        .subscribe {
+            action.invoke(it)
+        }
 
-fun countdownAction(time: Long, action: (Long) -> Unit): Disposable =
-        Observable.intervalRange(0, time + 1, 0, 1, TimeUnit.SECONDS)
-                .applySchedules()
-                .subscribe {
-                    action.invoke(time - it)
-                }
+fun countdownAction(
+    time: Long,
+    unit: TimeUnit = TimeUnit.SECONDS,
+    action: (Long) -> Unit
+): Disposable =
+    Observable.intervalRange(0, time + 1, 0, 1, unit)
+        .applySchedules()
+        .subscribe {
+            action.invoke(time - it)
+        }

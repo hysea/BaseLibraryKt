@@ -1,13 +1,13 @@
 package com.hysea.library.base
 
-import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
 import com.hysea.library.R
 import com.hysea.library.interfaces.IBaseView
 import com.hysea.library.manager.AppManager
+import java.time.LocalDate
 
 /**
  * Activity基类
@@ -18,8 +18,16 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        beforeLayoutSetup(savedInstanceState)
         setContentView(getLayoutId())
         initSetup(savedInstanceState)
+    }
+
+
+    /**
+     * 在布局之间设置
+     */
+    open fun beforeLayoutSetup(savedInstanceState: Bundle?) {
     }
 
     open fun initSetup(savedInstanceState: Bundle?) {
@@ -35,31 +43,15 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
      */
     open fun initImmersionBar(): ImmersionBar? {
         return ImmersionBar.with(this)
-                .barColor(R.color.white) // 导航栏和状态栏均为白色
-                .statusBarDarkFont(true) // 状态栏字体深色
-                .fitsSystemWindows(true)
-                .keyboardEnable(true)
-                .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+            .barColor(R.color.white) // 导航栏和状态栏均为白色
+            .statusBarDarkFont(true) // 状态栏字体深色
+            .fitsSystemWindows(true)
+            .keyboardEnable(true)
+            .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 
 
-    /**
-     * 设置监听事件
-     */
-    open fun initEvent() {
-    }
-
-    /**
-     * 显示加载进度
-     */
-    open fun showLoading() {
-
-    }
-
-    /**
-     * 隐藏加载进度
-     */
-    open fun hideLoading() {
+    override fun initEvent() {
 
     }
 

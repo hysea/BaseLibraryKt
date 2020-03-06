@@ -25,5 +25,10 @@ abstract class BaseFragment : Fragment(), IBaseView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init(savedInstanceState)
+        initEvent()
+    }
+
+    override fun initEvent() {
+
     }
 }

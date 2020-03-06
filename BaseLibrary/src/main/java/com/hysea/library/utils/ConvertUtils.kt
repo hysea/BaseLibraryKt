@@ -1,5 +1,7 @@
 package com.hysea.library.utils
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.hysea.library.constant.MemoryUnit
 
 /**
@@ -28,4 +30,12 @@ fun byteToFitMemorySize(byteSize: Long): String {
         byteSize < MemoryUnit.GB -> String.format("%.2fMB", byteSize.toDouble() / MemoryUnit.MB)
         else -> String.format("%.2fGB", byteSize.toDouble() / MemoryUnit.GB)
     }
+}
+
+fun <T> fromJsonObject(json: String, classOfT: Class<T>): T {
+    return Gson().fromJson(json, classOfT)
+}
+
+fun <T> fromJsonArray(json: String): List<T> {
+    return Gson().fromJson(json, object : TypeToken<List<T>>() {}.type)
 }

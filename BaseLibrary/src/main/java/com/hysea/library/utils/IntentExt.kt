@@ -27,22 +27,22 @@ import androidx.core.net.toUri
  *      </p>
  *      false:打开默认浏览器
  */
-fun launchBrowser(context: Context, url: String, isUserChoose: Boolean = false, exceptionHandler: ((Exception) -> Unit)? = null) {
-    if (!isUserChoose) {
-        launchThirdApp(context, url.toUri(), exceptionHandler)
-    } else {
-        try {
-            Intent(Intent.ACTION_VIEW, url.toUri()).apply {
-                val componentName = this.resolveActivity(context.packageManager)
-                LogUtils.d(tag(), "componentName:$componentName")
-                context.startActivity(Intent.createChooser(this, "Choose browser"))
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            exceptionHandler?.invoke(e)
-        }
-    }
-}
+//fun launchBrowser(context: Context, url: String, isUserChoose: Boolean = false, exceptionHandler: ((Exception) -> Unit)? = null) {
+//    if (!isUserChoose) {
+//        launchThirdApp(context, url.toUri(), exceptionHandler)
+//    } else {
+//        try {
+//            Intent(Intent.ACTION_VIEW, url.toUri()).apply {
+//                val componentName = this.resolveActivity(context.packageManager)
+//                LogUtils.d(tag(), "componentName:$componentName")
+//                context.startActivity(Intent.createChooser(this, "Choose browser"))
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//            exceptionHandler?.invoke(e)
+//        }
+//    }
+//}
 
 /**
  * 打开应用市场，如评分
