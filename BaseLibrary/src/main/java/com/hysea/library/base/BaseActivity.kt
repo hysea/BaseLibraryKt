@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
 import com.hysea.library.R
 import com.hysea.library.interfaces.IBaseView
-import com.hysea.library.manager.AppManager
-import java.time.LocalDate
+import com.hysea.library.manager.ActivityManager
 
 /**
  * Activity基类
@@ -31,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
     }
 
     open fun initSetup(savedInstanceState: Bundle?) {
-        AppManager.addActivity(this)
+        ActivityManager.addActivity(this)
         immersionBar = initImmersionBar()
         immersionBar?.init()
         init(savedInstanceState)
@@ -56,7 +55,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
     }
 
     override fun onDestroy() {
-        AppManager.removeActivity(this)
+        ActivityManager.removeActivity(this)
         immersionBar?.destroy() // 防止内存泄漏
         super.onDestroy()
     }

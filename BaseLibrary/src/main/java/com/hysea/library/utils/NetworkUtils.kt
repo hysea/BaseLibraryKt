@@ -7,6 +7,7 @@ import android.net.NetworkInfo
 import androidx.annotation.RequiresPermission
 import android.telephony.TelephonyManager
 import com.hysea.library.base.BaseApp
+import com.hysea.library.base.appContext
 import com.hysea.library.constant.NetworkType
 
 
@@ -44,7 +45,7 @@ fun is4GConnected(context: Context): Boolean {
  */
 @RequiresPermission(ACCESS_NETWORK_STATE)
 private fun getActiveNetworkInfo(): NetworkInfo? {
-    val cm = BaseApp.instance.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+    val cm = appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
     return cm?.activeNetworkInfo
 }
 

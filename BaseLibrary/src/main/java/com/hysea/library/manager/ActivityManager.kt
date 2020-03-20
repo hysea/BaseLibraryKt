@@ -8,7 +8,7 @@ import java.util.*
  * Created by hysea on 2018/8/20.
  */
 
-object AppManager {
+object ActivityManager {
     /**
      * 保存Activity对象的堆栈
      */

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.util.DisplayMetrics
 import android.view.WindowManager
-import com.hysea.library.base.BaseApp
+import com.hysea.library.base.appContext
 
 
 /**
@@ -38,16 +38,19 @@ fun getScreenHeight(context: Context): Int {
  */
 fun setFullScreen(activity: Activity?) {
     activity?.window?.addFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN or
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        WindowManager.LayoutParams.FLAG_FULLSCREEN or
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+    )
 }
 
 /**
  * set nonFullScreen
  */
 fun setNonFullScreen(activity: Activity?) {
-    activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
-            or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    activity?.window?.clearFlags(
+        WindowManager.LayoutParams.FLAG_FULLSCREEN
+                or WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+    )
 }
 
 
@@ -58,11 +61,15 @@ fun toggleFullScreen(activity: Activity?) {
     val fullScreenFlag = WindowManager.LayoutParams.FLAG_FULLSCREEN
     activity?.window?.let {
         if ((it.attributes.flags and fullScreenFlag) == fullScreenFlag) {
-            it.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN or
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            it.clearFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN or
+                        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
         } else {
-            it.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN or
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            it.addFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN or
+                        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
         }
     }
 }
@@ -83,7 +90,7 @@ fun isFullScreen(activity: Activity?): Boolean {
  * Return whether screen is landscape.
  */
 fun isLandscape(): Boolean {
-    return BaseApp.instance.resources.configuration.orientation ==
+    return appContext.resources.configuration.orientation ==
             Configuration.ORIENTATION_LANDSCAPE
 }
 
@@ -91,7 +98,7 @@ fun isLandscape(): Boolean {
  * Return whether screen is portrait.
  */
 fun isPortrait(): Boolean {
-    return BaseApp.instance.resources.configuration.orientation ==
+    return appContext.resources.configuration.orientation ==
             Configuration.ORIENTATION_PORTRAIT
 }
 

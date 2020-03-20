@@ -19,6 +19,7 @@ abstract class BaseApp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        appContext = this
         LogUtils.setLogEnable(BuildConfig.DEBUG)
         initBugly()
     }
@@ -26,7 +27,10 @@ abstract class BaseApp : Application() {
 
     private fun initBugly() {
         CrashReport.initCrashReport(this, "", BuildConfig.DEBUG)
-        CrashReport.setAppVersion(this, "${BuildConfig.VERSION_NAME}-${BuildConfig.VERSION_CODE}-${if (BuildConfig.DEBUG) "DEBUG" else "RELEASE"}")
+        CrashReport.setAppVersion(
+            this,
+            "${BuildConfig.VERSION_NAME}-${BuildConfig.VERSION_CODE}-${if (BuildConfig.DEBUG) "DEBUG" else "RELEASE"}"
+        )
     }
 
     /**

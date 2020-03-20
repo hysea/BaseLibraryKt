@@ -26,6 +26,17 @@ fun timerAction(
             action.invoke(it)
         }
 
+fun intervalAction(
+    interval: Long,
+    unit: TimeUnit = TimeUnit.SECONDS,
+    action: (Long) -> Unit
+): Disposable =
+    Observable.interval(interval, unit)
+        .applySchedules()
+        .subscribe {
+            action.invoke(it)
+        }
+
 fun countdownAction(
     time: Long,
     unit: TimeUnit = TimeUnit.SECONDS,

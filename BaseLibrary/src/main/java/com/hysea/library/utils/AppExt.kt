@@ -8,7 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.provider.Settings
-import com.hysea.library.base.BaseApp
+import com.hysea.library.base.appContext
 import com.hysea.library.constant.Constants
 import java.io.File
 import java.util.*
@@ -40,24 +40,28 @@ inline val sdkVersion
     get() = Build.VERSION.SDK_INT
 
 fun getDeviceToken(): String {
-    var deviceToken = Preference.get<String>("device_token")
+    var deviceToken = Prefs.get<String>("device_token")
     if (deviceToken.isNotEmpty()) {
         return deviceToken
     }
 
     var androidId =
-        Settings.System.getString(BaseApp.instance.contentResolver, Settings.Secure.ANDROID_ID)
+        Settings.System.getString(appContext.contentResolver, Settings.Secure.ANDROID_ID)
     if (androidId.isNullOrEmpty() || androidId == "9774d56d682e549c") {
         androidId = UUID.randomUUID().toString()
     }
-    Preference.save("device_token", androidId)
+    Prefs.save("device_token", androidId)
     return androidId
 }
 
 
 private var firstClickTime: Long = 0
 /** 双击点击退出app */
-fun doubleClickExit(timeInterval: Long = Constants.DEFAULT_EXIT_INTERVAL, tipBlock: () -> Unit, exitBlock: () -> Unit) {
+fun doubleClickExit(
+    timeInterval: Long = Constants.DEFAULT_EXIT_INTERVAL,
+    tipBlock: () -> Unit,
+    exitBlock: () -> Unit
+) {
     if (System.currentTimeMillis() - firstClickTime >= timeInterval) {
         firstClickTime = System.currentTimeMillis()
         tipBlock()
@@ -69,7 +73,11 @@ fun doubleClickExit(timeInterval: Long = Constants.DEFAULT_EXIT_INTERVAL, tipBlo
 /**
  * App是否安装
  */
-fun isAppInstall(context: Context, packageName: String, exceptionHandler: ((Exception) -> Unit)? = null): Boolean {
+fun isAppInstall(
+    context: Context,
+    packageName: String,
+    exceptionHandler: ((Exception) -> Unit)? = null
+): Boolean {
     if (packageName.isBlank()) return false
     try {
         context.packageManager.getInstalledPackages(0).forEach {
@@ -106,15 +114,15 @@ private fun createAppInfo(pm: PackageManager, pi: PackageInfo): AppInfo {
     val name = ai.loadLabel(pm).toString()
     val icon = ai.loadLogo(pm)
     return AppInfo(
-            name = name,
-            icon = icon,
-            packageName = pi.packageName,
-            versionName = pi.versionName,
-            versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                pi.longVersionCode
-            } else {
-                pi.versionCode.toLong()
-            }
+        name = name,
+        icon = icon,
+        packageName = pi.packageName,
+        versionName = pi.versionName,
+        versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            pi.longVersionCode
+        } else {
+            pi.versionCode.toLong()
+        }
     )
 }
 
@@ -132,14 +140,14 @@ fun isAppForeground(context: Context): Boolean {
 }
 
 data class AppInfo(
-        /** 名称 */
-        val name: String,
-        /** 图标 */
-        val icon: Drawable,
-        /** 包名 */
-        val packageName: String,
-        /** 版本号 */
-        val versionName: String,
-        /** 版本Code */
-        val versionCode: Long
+    /** 名称 */
+    val name: String,
+    /** 图标 */
+    val icon: Drawable,
+    /** 包名 */
+    val packageName: String,
+    /** 版本号 */
+    val versionName: String,
+    /** 版本Code */
+    val versionCode: Long
 )
