@@ -47,3 +47,19 @@ fun countdownAction(
         .subscribe {
             action.invoke(time - it)
         }
+
+fun postOnQueue(delay: Long = 0, action: () -> Unit): Disposable {
+    return Observable.timer(delay, TimeUnit.MILLISECONDS)
+        .observeOn(Schedulers.io())
+        .subscribe {
+            action.invoke()
+        }
+}
+
+fun postOnUI(delay: Long = 0, action: () -> Unit): Disposable {
+    return Observable.timer(delay, TimeUnit.MILLISECONDS)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe {
+            action.invoke()
+        }
+}

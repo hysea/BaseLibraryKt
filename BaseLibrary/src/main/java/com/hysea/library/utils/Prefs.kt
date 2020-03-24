@@ -35,33 +35,21 @@ object Prefs {
         }
     }
 
-    inline fun <reified T> get(key: String, default: Any): T = with(prefs) {
-        return@with when (default) {
-            is Int -> getInt(key, default)
-            is Long -> getLong(key, default)
-            is Float -> getFloat(key, default)
-            is Boolean -> getBoolean(key, default)
-            is String -> getString(key, default)
-            else -> getString(key, "").run {
-                gson.fromJson(this, T::class.java)
+    inline fun <reified T> get(key: String): T {
+        prefs.run {
+            val d = when (T::class) {
+                Int::class -> getInt(key, 0)
+                Long::class -> getLong(key, 0)
+                Float::class -> getFloat(key, 0f)
+                Boolean::class -> getBoolean(key, false)
+                String::class -> getString(key, "")
+                else -> {
+                    getString(key, "").run {
+                        gson.fromJson(this, T::class.java)
+                    }
+                }
             }
-        } as T
+            return d as T
+        }
     }
-
-//    inline fun <reified T> get(key: String): T {
-//        prefs.run {
-//            val d = when (T::class) {
-//                Int::class -> getInt(key, 0)
-//                Long::class -> getLong(key, 0)
-//                Float::class -> getFloat(key, 0f)
-//                String::class -> getString(key, "")
-//                else -> {
-//                    getString(key, "").run {
-//                        gson.fromJson(this, T::class.java)
-//                    }
-//                }
-//            }
-//            return d as T
-//        }
-//    }
 }
