@@ -11,6 +11,11 @@ import java.util.*
  */
 
 
+const val FORMAT_Y_TO_S = "yyyy-MM-dd HH:mm:ss"
+const val FORMAT_Y_M_D = "yyyy-MM-dd"
+const val FORMAT_H_M = "HH:mm"
+const val FORMAT_H_M_S = "HH:mm:ss"
+
 /**
  * 格式化时长
  * @param duration 单位秒
@@ -18,10 +23,10 @@ import java.util.*
 fun formatDuration(duration: Long): String {
     val minute = duration / 60
     val second = duration % 60
-    if (minute / 60 > 0) {
-        return String.format("%02d:%02d:%02d", minute / 60, minute % 60, second)
+    return if (minute / 60 > 0) {
+        String.format("%02d:%02d:%02d", minute / 60, minute % 60, second)
     } else {
-        return String.format("%02d:%02d", minute, second)
+        String.format("%02d:%02d", minute, second)
     }
 }
 
@@ -30,7 +35,7 @@ fun formatDuration(duration: Long): String {
  * @param timeStamp 时间戳，单位ms
  * @param format 格式，默认为：yyyy-MM-dd HH:mm:ss
  */
-fun formatTime(timeStamp: Long, format: String = Constants.FORMAT_Y_TO_S): String {
+fun formatTime(timeStamp: Long, format: String = FORMAT_Y_TO_S): String {
     val dateFormat = SimpleDateFormat(format, Locale.getDefault())
     return dateFormat.format(timeStamp)
 }

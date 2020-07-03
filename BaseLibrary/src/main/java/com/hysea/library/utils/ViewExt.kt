@@ -1,11 +1,16 @@
 package com.hysea.library.utils
 
 import android.content.Context
+import android.graphics.Paint
+import android.graphics.RectF
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
+import android.widget.EditText
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * View相关工具类
@@ -65,5 +70,29 @@ fun View.hideInputMethod() {
     imm?.hideSoftInputFromWindow(this.windowToken, 0)
 }
 
-fun TextView.getContent() = this.text.toString()
+/**
+ * 获取EditText内容
+ */
+fun EditText.getContent() = this.text.toString()
+
+val RecyclerView.gridLayoutManager: GridLayoutManager?
+    get() = layoutManager as? GridLayoutManager
+
+val RecyclerView.linearLayoutManager: LinearLayoutManager?
+    get() = layoutManager as? LinearLayoutManager
+
+/**
+ * 计算Text基线的y，用于draw时文字居中
+ *
+ * y = 矩形中心y值 + 矩形中心与基线的距离
+ *
+ * 距离 = 文字高度的一半 - 基线到文字底部的距离（也就是bottom）
+ */
+fun calcTextSuitBaseY(rectF: RectF, fontMetrics: Paint.FontMetrics): Float {
+    return rectF.height() / 2 + ((fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom)
+}
+
+
+
+
 

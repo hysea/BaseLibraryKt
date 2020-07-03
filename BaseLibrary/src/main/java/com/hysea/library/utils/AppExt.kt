@@ -39,24 +39,11 @@ inline val systemVersion
 inline val sdkVersion
     get() = Build.VERSION.SDK_INT
 
-fun getDeviceToken(): String {
-    var deviceToken = Prefs.get<String>("device_token")
-    if (deviceToken.isNotEmpty()) {
-        return deviceToken
-    }
-
-    var androidId =
-        Settings.System.getString(appContext.contentResolver, Settings.Secure.ANDROID_ID)
-    if (androidId.isNullOrEmpty() || androidId == "9774d56d682e549c") {
-        androidId = UUID.randomUUID().toString()
-    }
-    Prefs.save("device_token", androidId)
-    return androidId
-}
-
 
 private var firstClickTime: Long = 0
-/** 双击点击退出app */
+/**
+ * 双击点击退出app
+ */
 fun doubleClickExit(
     timeInterval: Long = Constants.DEFAULT_EXIT_INTERVAL,
     tipBlock: () -> Unit,

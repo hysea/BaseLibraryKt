@@ -12,38 +12,6 @@ import androidx.core.net.toUri
  */
 
 
-
-/**
- * 打开外部浏览器
- * @param isUserChoose
- *      true:用于可以选择浏览器打开，这种方式需要在manifest配置
- *      <p>
- *          <intent-filter>
- *               <action android:name="android.intent.action.VIEW" />
- *               <category android:name="android.intent.category.DEFAULT" />
- *               <category android:name="android.intent.category.BROWSABLE" />
- *               <data android:scheme="http" />
- *          /intent-filter>
- *      </p>
- *      false:打开默认浏览器
- */
-//fun launchBrowser(context: Context, url: String, isUserChoose: Boolean = false, exceptionHandler: ((Exception) -> Unit)? = null) {
-//    if (!isUserChoose) {
-//        launchThirdApp(context, url.toUri(), exceptionHandler)
-//    } else {
-//        try {
-//            Intent(Intent.ACTION_VIEW, url.toUri()).apply {
-//                val componentName = this.resolveActivity(context.packageManager)
-//                LogUtils.d(tag(), "componentName:$componentName")
-//                context.startActivity(Intent.createChooser(this, "Choose browser"))
-//            }
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            exceptionHandler?.invoke(e)
-//        }
-//    }
-//}
-
 /**
  * 打开应用市场，如评分
  * @param packageName 应用的包名即ApplicationId

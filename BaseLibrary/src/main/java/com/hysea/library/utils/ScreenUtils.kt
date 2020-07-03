@@ -95,7 +95,7 @@ fun getStatusBarHeight(): Int {
 }
 
 /**
- * set fullScreen
+ * 设置全屏
  */
 fun setFullScreen(activity: Activity?) {
     activity?.window?.addFlags(
@@ -105,7 +105,7 @@ fun setFullScreen(activity: Activity?) {
 }
 
 /**
- * set nonFullScreen
+ * 设置非全屏
  */
 fun setNonFullScreen(activity: Activity?) {
     activity?.window?.clearFlags(
@@ -116,7 +116,7 @@ fun setNonFullScreen(activity: Activity?) {
 
 
 /**
- * Toggle full screen.
+ * 全屏与非全屏切换
  */
 fun toggleFullScreen(activity: Activity?) {
     val fullScreenFlag = WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -148,7 +148,7 @@ fun isFullScreen(activity: Activity?): Boolean {
 }
 
 /**
- * Return whether screen is landscape.
+ * 是否横屏
  */
 fun isLandscape(context: Context): Boolean {
     return context.resources.configuration.orientation ==
@@ -156,7 +156,7 @@ fun isLandscape(context: Context): Boolean {
 }
 
 /**
- * Return whether screen is portrait.
+ * 是否竖屏
  */
 fun isPortrait(context: Context): Boolean {
     return context.resources.configuration.orientation ==

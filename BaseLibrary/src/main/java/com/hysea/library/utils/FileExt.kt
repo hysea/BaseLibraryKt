@@ -142,9 +142,9 @@ fun readFileToBytesFromAssets(context: Context, fileName: String): ByteArray {
     return context.assets.open(fileName).readBytes()
 }
 
-fun File.toUri(context: Context): Uri {
+fun File.toUri(context: Context, authority:String): Uri {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        val authority = "${BuildConfig.APPLICATION_ID}.provider"
+//        val authority = "${BuildConfig.APPLICATION_ID}.provider"
         FileProvider.getUriForFile(context, authority, this)
     } else {
         Uri.fromFile(this)

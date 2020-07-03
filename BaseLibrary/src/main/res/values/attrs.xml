@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="ScaleLayout">
         <!--宽高比例，宽:高 -->
-        <attr name="scale" format="float"/>
+        <attr name="scale_ratio" format="float"/>
     </declare-styleable>
 
     <!--通用标题栏-->
@@ -26,5 +26,11 @@
     <declare-styleable name="CountDownButton">
         <attr name="duration" format="integer"/>
         <attr name="countdown_interval" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="PageIndicator">
+        <attr name="radius" format="dimension"/>
+        <attr name="selected_color" format="color" />
+        <attr name="unselected_color" format="color" />
     </declare-styleable>
 </resources>

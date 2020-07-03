@@ -1,5 +1,7 @@
 package com.hysea.library.utils
 
+import android.content.res.Resources
+import android.util.TypedValue
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -14,3 +16,17 @@ import java.math.RoundingMode
 fun Double.keepDecimal(bit: Int, roundingMode: RoundingMode = RoundingMode.HALF_UP): Double {
     return BigDecimal(this).setScale(bit, roundingMode).toDouble()
 }
+
+val Number.dp
+    get() = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            this.toFloat(),
+            Resources.getSystem().displayMetrics
+    )
+
+val Number.sp
+    get() = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP,
+            this.toFloat(),
+            Resources.getSystem().displayMetrics
+    )

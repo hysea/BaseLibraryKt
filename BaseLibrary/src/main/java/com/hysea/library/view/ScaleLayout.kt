@@ -2,28 +2,33 @@ package com.hysea.library.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.RelativeLayout
+import android.widget.FrameLayout
+import androidx.core.content.res.use
 import com.hysea.library.R
 
 
 /**
- * 按照比例显示的RelativeLayout
+ * 可以按照比例设置的FrameLayout
  * 以android:layout_width的宽度为基准
  */
-class ScaleLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) {
-    var mScale = -1f
+class ScaleLayout(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
+    private var scaleRatio = DEFAULT_SCALE_RATIO
 
     init {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ScaleLayout)
-        mScale = typedArray.getFloat(R.styleable.ScaleLayout_scale, mScale)
-        typedArray.recycle()
+        context.obtainStyledAttributes(attrs, R.styleable.ScaleLayout).use {
+            scaleRatio = it.getFloat(R.styleable.ScaleLayout_scale_ratio, scaleRatio)
+        }
     }
 
     public override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        if (mScale != -1f) {
-            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec((MeasureSpec.getSize(widthMeasureSpec) * mScale).toInt(), MeasureSpec.getMode(widthMeasureSpec)))
+        if (scaleRatio != -1f) {
+            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec((MeasureSpec.getSize(widthMeasureSpec) * scaleRatio).toInt(), MeasureSpec.getMode(widthMeasureSpec)))
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         }
+    }
+
+    companion object {
+        const val DEFAULT_SCALE_RATIO = -1f
     }
 }
